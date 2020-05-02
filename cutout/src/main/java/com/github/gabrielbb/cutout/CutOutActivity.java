@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
@@ -37,6 +38,7 @@ import top.defaults.checkerboarddrawable.CheckerboardDrawable;
 
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
+import static android.view.View.GONE;
 import static com.github.gabrielbb.cutout.CutOut.CUTOUT_EXTRA_INTRO;
 
 public class CutOutActivity extends AppCompatActivity {
@@ -61,11 +63,6 @@ public class CutOutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_photo_edit);
-
-        Toolbar toolbar = findViewById(R.id.photo_edit_toolbar);
-        toolbar.setBackgroundColor(Color.BLACK);
-        toolbar.setTitleTextColor(Color.WHITE);
-        setSupportActionBar(toolbar);
 
         FrameLayout drawViewLayout = findViewById(R.id.drawViewLayout);
 
@@ -113,6 +110,9 @@ public class CutOutActivity extends AppCompatActivity {
 
         manualClearSettingsLayout = findViewById(R.id.manual_clear_settings_layout);
 
+        ImageView ivClose = findViewById(R.id.close);
+        ivClose.setOnClickListener(view -> onBackPressed());
+
         setUndoRedo();
         initializeActionButtons();
 
@@ -120,11 +120,6 @@ public class CutOutActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-            if (toolbar.getNavigationIcon() != null) {
-                toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
-            }
-
         }
 
         Button doneButton = findViewById(R.id.done);
@@ -255,7 +250,7 @@ public class CutOutActivity extends AppCompatActivity {
         autoClearButton.setOnClickListener((buttonView) -> {
             if (!autoClearButton.isActivated()) {
                 drawView.setAction(DrawView.DrawViewAction.AUTO_CLEAR);
-                manualClearSettingsLayout.setVisibility(INVISIBLE);
+                toggleSettingsLayout(false);
                 autoClearButton.setActivated(true);
                 manualClearButton.setActivated(false);
                 zoomButton.setActivated(false);
@@ -268,7 +263,7 @@ public class CutOutActivity extends AppCompatActivity {
         manualClearButton.setOnClickListener((buttonView) -> {
             if (!manualClearButton.isActivated()) {
                 drawView.setAction(DrawView.DrawViewAction.MANUAL_CLEAR);
-                manualClearSettingsLayout.setVisibility(VISIBLE);
+                toggleSettingsLayout(true);
                 manualClearButton.setActivated(true);
                 autoClearButton.setActivated(false);
                 zoomButton.setActivated(false);
@@ -282,7 +277,7 @@ public class CutOutActivity extends AppCompatActivity {
         zoomButton.setOnClickListener((buttonView) -> {
             if (!zoomButton.isActivated()) {
                 drawView.setAction(DrawView.DrawViewAction.ZOOM);
-                manualClearSettingsLayout.setVisibility(INVISIBLE);
+                toggleSettingsLayout(false);
                 zoomButton.setActivated(true);
                 manualClearButton.setActivated(false);
                 autoClearButton.setActivated(false);
@@ -290,6 +285,16 @@ public class CutOutActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    private void toggleSettingsLayout(boolean isVisible) {
+        if (isVisible) {
+            manualClearSettingsLayout.setVisibility(VISIBLE);
+            manualClearSettingsLayout.setBackgroundColor(Color.BLACK);
+            return;
+        }
+        manualClearSettingsLayout.setVisibility(INVISIBLE);
+        manualClearSettingsLayout.setBackgroundColor(Color.TRANSPARENT);
     }
 
     private void setUndoRedo() {
