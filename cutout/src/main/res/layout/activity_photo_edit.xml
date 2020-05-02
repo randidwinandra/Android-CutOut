@@ -32,77 +32,16 @@
 
             <Button
                 android:id="@+id/done"
-                android:layout_width="28dp"
+                android:text="Done"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
                 android:layout_height="28dp"
                 android:layout_gravity="end"
                 android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp" android:background="@drawable/done" />
+                android:layout_marginEnd="10dp"
+                android:background="" />
 
         </android.support.v7.widget.Toolbar>
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="38dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/zoom_button"
-                android:layout_width="38dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginEnd="8dp" android:layout_marginStart="10dp" android:background="@drawable/magnifier_selector"
-                android:padding="5dip" />
-
-            <Button
-                android:id="@+id/auto_clear_button"
-                android:layout_width="38dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginEnd="8dp" android:layout_marginStart="5dp" android:background="@drawable/magic_selector"
-                android:padding="5dip" />
-
-            <Button
-                android:id="@+id/manual_clear_button"
-                android:layout_width="38dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginEnd="15dp" android:layout_marginStart="5dp" android:background="@drawable/pencil_selector"
-                android:padding="5dip" />
-
-            <LinearLayout
-                android:id="@+id/manual_clear_settings_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Eraser size:"
-                    android:textColor="@color/white" />
-
-                <SeekBar
-                    android:id="@+id/strokeBar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:max="30"
-                    android:progress="15" />
-
-            </LinearLayout>
-
-        </LinearLayout>
 
     </FrameLayout>
 
@@ -141,5 +80,93 @@
         </FrameLayout>
 
     </com.alexvasilkov.gestures.views.GestureFrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/zoom_button"
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp" android:layout_marginStart="10dp" android:background="@drawable/magnifier_selector"
+                    android:padding="5dip" />
+
+                <Button
+                    android:id="@+id/auto_clear_button"
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp" android:layout_marginStart="5dp" android:background="@drawable/magic_selector"
+                    android:padding="5dip" />
+
+                <Button
+                    android:id="@+id/manual_clear_button"
+                    android:layout_width="38dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginEnd="15dp" android:layout_marginStart="5dp" android:background="@drawable/pencil_selector"
+                    android:padding="5dip" />
+
+                <LinearLayout
+                    android:id="@+id/manual_clear_settings_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Eraser size:"
+                        android:textColor="@color/white" />
+
+                    <SeekBar
+                        android:id="@+id/strokeBar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:max="30"
+                        android:progress="15" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:text="Background Remover"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </LinearLayout>
